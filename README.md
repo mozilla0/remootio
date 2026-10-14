@@ -95,7 +95,7 @@ After setup, you'll have the following entities:
 
 | Entity | Type | Description |
 |--------|------|-------------|
-| `cover.garage_door_channel_1` | Cover | Channel 1 — open/close control with status |
+| `cover.garage_door` | Cover | Channel 1 — open/close control with status. Uses the device name as friendly name (e.g. "Garage Door") |
 | `button.garage_door_toggle_channel_1` | Button | Channel 1 toggle (Android Auto / CarPlay) |
 | `button.garage_door_toggle_channel_2` | Button | Channel 2 trigger (Android Auto / CarPlay) |
 | `sensor.garage_door_operation_count_channel_1` | Sensor | Number of times channel 1 has opened (persisted across restarts) |
@@ -103,6 +103,8 @@ After setup, you'll have the following entities:
 | `sensor.garage_door_last_closed_channel_1` | Sensor | Timestamp of last channel 1 close |
 
 The device will appear in your Device Registry with manufacturer "Remootio" and model "Garage Door Controller".
+
+> **Note on naming:** The cover is the main feature of the device and therefore has no entity name of its own – its friendly name is simply the device name. Keep the device name short (e.g. "Tor Matthias"), because Android Auto and CarPlay truncate long names. Installations created with version 2.7.6 or earlier keep their existing entity ID (`cover.<name>_channel_1`); only the displayed name changes.
 
 ### Dual-output devices (e.g. Remootio 3)
 

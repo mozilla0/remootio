@@ -45,7 +45,15 @@ class RemootioCover(CoordinatorEntity[RemootioCoordinator], CoverEntity):
         self._attr_unique_id = (
             f"remootio_{coordinator.host.replace('.', '_')}_ch{relay_number}"
         )
-        self._attr_translation_key = f"channel_{relay_number}"
+        if relay_number == 1:
+            # Channel 1 is the main feature of the device: no own entity
+            # name, so the friendly name equals the device name
+            # (e.g. "Tor Matthias" instead of "Tor Matthias Channel 1").
+            # Short names are important for Android Auto / CarPlay, which
+            # truncate long entity names.
+            self._attr_name = None
+        else:
+            self._attr_translation_key = f"channel_{relay_number}"
 
     @property
     def device_info(self) -> DeviceInfo:
